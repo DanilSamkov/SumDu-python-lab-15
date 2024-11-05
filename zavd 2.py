@@ -29,6 +29,19 @@ monthly_usage_df.columns = ["Місяць", "Загальна кількість
 monthly_usage_df.sort_values(by="Загальна кількість велосипедистів", ascending=False, inplace=True)
 print(monthly_usage_df.to_string(index=False))
 
+# Словник для переведення номера місяця у його назву
+month_names = {
+    1: "Січень", 2: "Лютий", 3: "Березень", 4: "Квітень",
+    5: "Травень", 6: "Червень", 7: "Липень", 8: "Серпень",
+    9: "Вересень", 10: "Жовтень", 11: "Листопад", 12: "Грудень"
+}
+
+# Визначимо найбільш популярний місяць
+most_popular_month = monthly_usage.idxmax()
+most_popular_count = monthly_usage.max()
+most_popular_month_name = month_names[most_popular_month]
+print(f"\nНайбільш популярний місяць для велосипедистів: {most_popular_month_name} (Кількість велосипедистів: {int(most_popular_count)})")
+
 # Функція для форматування чисел на осі y
 def format_y(value, _):
     return f'{int(value):,}'.replace(',', ' ')
@@ -64,5 +77,3 @@ plt.gca().yaxis.set_major_formatter(FuncFormatter(format_y))
 plt.grid()
 plt.tight_layout()
 plt.show()
-
-
